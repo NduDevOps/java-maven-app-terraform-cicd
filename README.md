@@ -26,6 +26,7 @@ An end-to-end CI/CD pipeline that automates the build, infrastructure provisioni
 8. [How It Works](#how-it-works)
 9. [Jenkins Console Output](#jenkins-console-output-condensed)
 10. [Demo Steps Executed](#demo-steps-executed)
+11. [Verifying the Deployment](#verifying-the-deployment)
 
 ---
 
@@ -341,6 +342,13 @@ Finished: SUCCESS
 - [x] Adjusted Jenkinsfile to include provision and deployment stages
 - [x] Included Docker login to pull images from private Docker Hub repository
 - [x] Executed the full CI/CD pipeline successfully
+- [x] Verified deployment by SSH-ing into the EC2 instance and confirming running containers
+
+---
+
+## Verifying the Deployment
+
+After the pipeline completed successfully, the EC2 instance was accessed via SSH to verify the deployment. The SSH key pair (`myapp-key-pair.pem`) was used with restricted permissions to connect to the provisioned server at its public IP address. Upon logging in, the Amazon Linux 2 welcome banner confirmed the instance was running. Running `docker ps` on the server showed the PostgreSQL 16 container up and healthy, listening on port 5432. The Java Maven application container was also deployed and accessible on port 8080, confirming the full end-to-end pipeline — from code push to live application — executed successfully.
 
 ---
 
